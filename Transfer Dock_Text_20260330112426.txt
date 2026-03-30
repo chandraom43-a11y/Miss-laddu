@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You want to forever  Me? 💍</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        /* Animated Hearts Background */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.6);
+            font-size: 20px;
+            animation: float 6s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .hero {
+            max-width: 800px;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 8vw, 6rem);
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        .proposal-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        
+        .proposal-card:hover {
+            transform: scale(0.95);
+        }
+        
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,157,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,157,0.6);
+        }
+        
+        .ring {
+            font-size: 4rem;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Photo Gallery */
+        .gallery {
+            display: flex;
+            gap: 20px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.8);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .photo:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .proposal-card {
+                padding: 40px 20px;
+                margin: 20px;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        /* Success Animation */
+        .success {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.95);
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .success.show {
+            display: flex;
+        }
+        
+        .success h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #ff6b9d;
+            margin-bottom: 20px;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b9d;
+            animation: confetti-fall 3s infinite linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <div class="hero">
+            <h1>[Miss Laddu]</h1>
+            <p class="subtitle">The love of my life, my everything 💕</p>
+        </div>
+        
+        <div class="proposal-card">
+            <div class="ring">💍</div>
+            <div class="message">
+                From the moment I met you, I knew you were the one. 
+                Every day with you feels like a dream. 
+                You've made me the happiest person alive.
+                <br><br>
+                <strong>Will you make me the luckiest man in the world?</strong>
+                <br><br>
+                Will you marry me?
+            </div>
+            <button class="cta-button" onclick="showResponse('yes')">❤️ YES ❤️</button>
+            <button class="cta-button" style="background: #666; margin-left: 20px;" onclick="showResponse('no')">Maybe Later 😊</button>
+        </div>
+        
+        <!-- Photo Memories (Add your photos here) -->
+        <div class="gallery">
+            <img src="https://via.placeholder.com/120/ff6b9d/fff?text=😍" alt="Memory 1" class="photo">
+            <img src="https://via.placeholder.com/120/ff9a9e/fff?text=💕" alt="Memory 2" class="photo">
+            <img src="https://via.placeholder.com/120/fecfef/fff?text=✨" alt="Memory 3" class="photo">
+            <img src="https://via.placeholder.com/120/c44569/fff?text=💖" alt="Memory 4" class="">
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div class="success" id="successModal">
+        <h2>YES! 💍✨</h2>
+        <p style="font-size: 1.5rem; color: #333; max-width: 500px;">
+            I love you more than words can express! 
+            This is the happiest moment of my life! 
+            Forever starts now, my love ❤️
+        </p>
+        <div style="margin-top: 40px;">
+            <button onclick="location.reload()" style="padding: 15px 40px; font-size: 1.2rem; background: #ff6b9d; color: white; border: none; border-radius: 25px; cursor: pointer;">
+                Experience it again 💕
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+        
+        setInterval(createHeart, 300);
+        
+        // Show response
+        function showResponse(answer) {
+            if (answer === 'yes') {
+                document.getElementById('successModal').classList.add('show');
+                createConfetti();
+            } else {
+                alert('Take all the time you need, my love. I\'ll wait forever for you 💕');
+            }
+        }
+        
+        // Confetti effect
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = ['#ff6b9d', '#c44569', '#ff9a9e', '#fecfef'][Math.floor(Math.random() * 4)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                document.getElementById('successModal').appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
